@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public Animator anim;
+    private Rigidbody2D rb;
+    private Animator anim;
+
+    private void Start()
+    {
+        
+    } 
+
     void Update()
     {
         if (Input.GetKey(KeyCode.A))
