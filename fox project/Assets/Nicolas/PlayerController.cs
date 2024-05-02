@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Animator anim;
+    public Rigidbody2D rb;
+    public Animator anim;
 
     private void Start()
     {
@@ -33,9 +33,9 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("running", false);
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown)("Jump"))
         {
-            rb.velocity = new Vector2(rb.velocity.x, 10f);
+            rb.velocity = new Vector2(rb.velocity.x, 6f);
         }
     }
 }
