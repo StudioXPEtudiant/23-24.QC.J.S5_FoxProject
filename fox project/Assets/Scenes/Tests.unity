@@ -136,6 +136,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2268851381446344517, guid: 9f6a7d14c7428614b828268d72cba836, type: 3}
+      propertyPath: ground.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3927752792939929084, guid: 9f6a7d14c7428614b828268d72cba836, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12289,6 +12293,10 @@ PrefabInstance:
     - target: {fileID: 8061544365843252103, guid: fb7c4612873147746b101951163a44b4, type: 3}
       propertyPath: m_Name
       value: Terrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 8061544365843252103, guid: fb7c4612873147746b101951163a44b4, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8999633536188199674, guid: fb7c4612873147746b101951163a44b4, type: 3}
       propertyPath: m_LocalPosition.x
