@@ -12,12 +12,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask ground;
     [SerializeField] private float speed = 5f;
 
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashingPower = 24f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
-    [SerializeField] TrailRenderer tr;
+    // private bool canDash = true;
+    // private bool isDashing;
+    // private float dashingPower = 24f;
+    // private float dashingTime = 0.2f;
+    // private float dashingCooldown = 1f;
+    // [SerializeField] TrailRenderer tr;
 
     private void Start()
     {
@@ -53,37 +53,37 @@ public class PlayerController : MonoBehaviour
             state = State.jumping;
         }
 
-        VelocityState();
-        anim.SetInteger("state", (int)state);
+        // VelocityState();
+        // anim.SetInteger("state", (int)state);
 
     }
 
-    private void VelocityState()
-    {
-        if(state == State.jumping)
-        {
-            if(rb.velocity.y < .1f)
-            {
-                state = State.falling;
-            }
-        }
+    // private void VelocityState()
+    // {
+    //     if(state == State.jumping)
+    //     {
+    //         if(rb.velocity.y < .1f)
+    //         {
+    //             state = State.falling;
+    //         }
+    //     }
         
-        if (state == State.falling)
-        {
-            if(coll.IsTouchingLayers(ground))
-            {
-                state = State.idle;
-            }
-        }
-        else if(Mathf.Abs(rb.velocity.x) > 2f)
-        {
-            //Moving
-            state = State.running;
-        }
+    //     if (state == State.falling)
+    //     {
+    //         if(coll.IsTouchingLayers(ground))
+    //         {
+    //             state = State.idle;
+    //         }
+    //     }
+    //     else if(Mathf.Abs(rb.velocity.x) > 2f)
+    //     {
+    //         //Moving
+    //         state = State.running;
+    //     }
 
-        else
-        {
-            state = State.idle;
-        }
-    }
+    //     else
+    //     {
+    //         state = State.idle;
+    //     }
+    //}
 }
