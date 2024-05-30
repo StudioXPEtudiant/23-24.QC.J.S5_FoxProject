@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed);
-        anim.SetTrigger("jumping");
+        //anim.SetTrigger("jumping");
     }
 
     // private void OnCollisionEnter2D(Collision2D collision)
