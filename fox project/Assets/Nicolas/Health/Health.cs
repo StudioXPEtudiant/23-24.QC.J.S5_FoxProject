@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
         else
         {
             //player dead
+            GetComponent<PlayerController>().enabled = false;
         }
     }
 

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 451836885646522306}
   - component: {fileID: 1813798115504554541}
   - component: {fileID: 2268851381446344517}
+  - component: {fileID: 8348079969684933627}
   m_Layer: 0
   m_Name: Joueur
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +101,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -147,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09012276, y: -0.34345776}
+  m_Offset: {x: 0.034018636, y: -0.3408255}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -158,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0064027, y: 1.3218869}
+  m_Size: {x: 0.7581198, y: 1.3166225}
   m_EdgeRadius: 0
 --- !u!95 &1813798115504554541
 Animator:
@@ -170,7 +171,7 @@ Animator:
   m_GameObject: {fileID: 6243613614237355881}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: db63f7fd2a4f55b4aa9045463de9f167, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4c310faed573a2e469e263f6d8cbc371, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -193,5 +194,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316ffb3abe64a564bb49d4fbd2a7c73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 8412881745546623046}
-  anim: {fileID: 1813798115504554541}
+  speed: 7
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!114 &8348079969684933627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243613614237355881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7041fc9dd6fd7c04ab205218637f4bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3

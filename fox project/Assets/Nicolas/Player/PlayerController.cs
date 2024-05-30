@@ -1,89 +1,84 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    [SerializeField] private float speed;
+    [SerializeField] private LayerMask groundLayer;
+    //[SerializeField] private LayerMask wallLayer;
+    private Rigidbody2D body;
     private Animator anim;
-    private enum State {idle, running, jumping, falling}
-    private State state = State.idle;
-    private Collider2D coll;
-    [SerializeField] private LayerMask ground;
-    [SerializeField] private float speed = 5f;
+    private BoxCollider2D boxCollider;
+    //private float wallJumpCooldown;
 
-    // private bool canDash = true;
-    // private bool isDashing;
-    // private float dashingPower = 24f;
-    // private float dashingTime = 0.2f;
-    // private float dashingCooldown = 1f;
-    // [SerializeField] TrailRenderer tr;
 
-    private void Start()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //Grab references for rigidbody and animator from object
+        body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        coll = GetComponent<Collider2D>();
-    } 
-
-    void Update()
-    {
-        float hDirection = Input.GetAxis("Horizontal");
-
-        if (hDirection < 0)
-        {
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
-            transform.localScale = new Vector2(-1, 1);
-        }
-
-        else if (hDirection > 0)
-        {
-            rb.velocity = new Vector2(speed, rb.velocity.y);
-            transform.localScale = new Vector2(1, 1);
-        }
-
-        else
-        {
-            
-        }
-
-        if (Input.GetButtonDown("Jump") && coll.IsTouchingLayers(ground))
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 10f);
-            state = State.jumping;
-        }
-
-        // VelocityState();
-        // anim.SetInteger("state", (int)state);
-
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    // private void VelocityState()
-    // {
-    //     if(state == State.jumping)
-    //     {
-    //         if(rb.velocity.y < .1f)
-    //         {
-    //             state = State.falling;
-    //         }
-    //     }
-        
-    //     if (state == State.falling)
-    //     {
-    //         if(coll.IsTouchingLayers(ground))
-    //         {
-    //             state = State.idle;
-    //         }
-    //     }
-    //     else if(Mathf.Abs(rb.velocity.x) > 2f)
-    //     {
-    //         //Moving
-    //         state = State.running;
-    //     }
+    private void Update()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-    //     else
-    //     {
-    //         state = State.idle;
-    //     }
+        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+
+        //flip player when moving left-right
+        if (horizontalInput > 0.01f)
+            transform.localScale = Vector3.one;
+        else if (horizontalInput < -0.01f)
+            transform.localScale = new Vector3(-1, 1, 1);
+
+            if (Input.GetKey(KeyCode.Space) && isGrounded())
+                Jump();
+
+
+        //Set animator parameters
+        anim.SetBool("run", horizontalInput != 0);
+        anim.SetBool("grounded", isGrounded());
+
+        // //wall jummp logic
+        // if (wallJumpCooldown < 0.2f)
+        // {
+        //     if (Input.GetKey(KeyCode.Space))
+        //         Jump();
+
+        //     body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+
+        //     if (onWall() && isGrounded())
+        //     {
+        //         body.gravityScale = 0;
+        //         body.velocity = Vector2.zero;
+        //     }
+        //     else
+        //         body.gravityScale = 3;
+        // }
+        // else
+           // wallJumpCooldown += Time.deltaTime;
+    }
+
+    private void Jump()
+    {
+        body.velocity = new Vector2(body.velocity.x, speed);
+        anim.SetTrigger("jumping");
+    }
+
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+
+    // }
+
+    private bool isGrounded()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        return raycastHit.collider != null;
+    }
+
+    //private bool onWall()
+    //{
+    //    RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+   //     return raycastHit.collider != null;
     //}
 }
