@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
         else if (horizontalInput < -0.01f)
             transform.localScale = new Vector3(-1, 1, 1);
 
-            if (Input.GetKey(KeyCode.Space) && isGrounded())
-                Jump();
+        if (Input.GetKey(KeyCode.Space) && isGrounded())
+            Jump();
 
 
         //Set animator parameters
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         //         body.gravityScale = 3;
         // }
         // else
-           // wallJumpCooldown += Time.deltaTime;
+        // wallJumpCooldown += Time.deltaTime;
     }
 
     private void Jump()
@@ -79,6 +79,6 @@ public class PlayerController : MonoBehaviour
     //private bool onWall()
     //{
     //    RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
-   //     return raycastHit.collider != null;
+    //     return raycastHit.collider != null;
     //}
 }
